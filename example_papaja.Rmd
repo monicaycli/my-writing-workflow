@@ -1,0 +1,75 @@
+---
+title             : "Example for Converting RMarkdown into Word Doc and PDF with Papaja"
+shorttitle        : "RMarkdown & Papaja"
+
+author            :
+  - name          : "Monica Li"
+    affiliation   : "a"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Psychological Sciences Department, 406 Babbidge Road, Unit 1020, Storrs, CT 06269"
+    email         : "monica.yc.li@gmail.com"
+  - name          : "Imaginary Author Two"
+    affiliation   : "b"
+affiliation       :
+  - id            : "a"
+    institution   : "University of Connecticut"
+  - id            : "b"
+    institution   : "Institute of Somewhere Over the Rainbow"
+
+author_note: >
+
+abstract: >
+  This document has similar content as `example_pandoc.md` but with
+  more sophisticated format settings for the APA citation style.
+  For more detailed examples including R syntax, check out `papaja`'s
+  [GitHub repo](https://github.com/crsh/papaja).
+
+keywords: "APA style, knitr, R, R markdown, papaja, docx, pdf"
+wordcount: "[insert word count here]"
+
+bibliography      : ["example.bib"]
+csl               : ["APA_ML.csl"]
+
+figsintext        : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+linkcolor         : "blue"
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf # Use papaja::apa6_word for Word documents
+---
+
+# Instructions
+1. Install [`R Studio`](https://www.rstudio.com/products/rstudio/download/)
+
+2. Install [`papaja`](https://github.com/crsh/papaja) in `R Studio`
+
+3. To convert this file into a Word document:
+    1. make sure in the yaml block, `output` is set to `papaja::apa6_word`
+    2. click the `knit` button in `R Studio`
+
+4. To convert this file into a PDF file:
+    1. make sure in the yaml block, `output` is set to `papaja::apa6_pdf`
+    2. click the `knit` button in `R Studio`
+
+# In-Text Citation Examples
+Citations are referred to by their citation keys (which you can specify in your reference manager, like _Mendeley_) in square brackets [@Magnuson2011], and multiple citations are separated by semicolons like so [@Magnuson2011; @Magnuson2015].
+
+You can add a prefix or suffix to a citation, for example, when you cite pages from a book [@Marr1982, pp.24-27].
+
+Although you can technically put the citation outside of square brackets like @Magnuson2018, you might encounter formatting issues like unwanted ampersands.
+In cases like this, you might want to suppress the author name(s) in the parenthesis by adding `-` before the citation key, like this: Magnuson, Mirman, Luthra, Strauss, and Harris [-@Magnuson2018].
+
+Also, the **(in press)** part of the previous reference is enabled by my workaround `APA_ML.csl` to work with _Mendeley_.
+Check out `example.bib` for `@Magnuson2018` to see how it's set up.
+
+For theses, dissertations, unpublished, and almost published manuscripts, like [@Li2014; @Li2016; @Li2017; @Noordenbos2013a], some care needs to be done when entering the information in your reference manager.
+Check out `example.bib` for these references to see the setup.
+
+All cited references will be automatically generated at the end of the converted document or under `# References` / `# Bibliography`.
+
+# References
+
