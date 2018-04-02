@@ -1,0 +1,288 @@
+\documentclass[english,floatsintext,man]{apa6}
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+
+% Table formatting
+\usepackage{longtable, booktabs}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+
+\newenvironment{lltable}
+  {\begin{landscape}\begin{center}\begin{ThreePartTable}}
+  {\end{ThreePartTable}\end{center}\end{landscape}}
+
+
+
+
+% The following enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand\getlongtablewidth{%
+ \begingroup
+  \ifcsname LT@\roman{LT@tables}\endcsname
+  \global\longtablewidth=0pt
+  \renewcommand\LT@entry[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}%
+  \@nameuse{LT@\roman{LT@tables}}%
+  \fi
+\endgroup}
+
+
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            pdfauthor={},
+            pdftitle={Example for Converting RMarkdown into Word Doc and PDF with Papaja},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=blue,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+\setlength{\parindent}{0pt}
+%\setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\ifxetex
+  \usepackage{polyglossia}
+  \setmainlanguage{}
+\else
+  \usepackage[english]{babel}
+\fi
+
+% Manuscript styling
+\captionsetup{font=singlespacing,justification=justified}
+\usepackage{csquotes}
+\usepackage{upgreek}
+
+ % Line numbering
+  \usepackage{lineno}
+  \linenumbers
+
+
+\usepackage{tikz} % Variable definition to generate author note
+
+% fix for \tightlist problem in pandoc 1.14
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Essential manuscript parts
+  \title{Example for Converting RMarkdown into Word Doc and PDF with Papaja}
+
+  \shorttitle{RMarkdown \& Papaja}
+
+
+  \author{Monica Li\textsuperscript{a}~\& Imaginary Author Two\textsuperscript{b}}
+
+  \def\affdep{{"", ""}}%
+  \def\affcity{{"", ""}}%
+
+  \affiliation{
+    \vspace{0.5cm}
+          \textsuperscript{a} University of Connecticut\\
+          \textsuperscript{b} Institute of Somewhere Over the Rainbow  }
+
+ % If no author_note is defined give only author information if available
+      \newcounter{author}
+                              \authornote{
+            Correspondence concerning this article should be addressed to Monica Li, Psychological Sciences Department, 406 Babbidge Road, Unit 1020, Storrs,
+CT 06269. E-mail: \href{mailto:monica.yc.li@gmail.com}{\nolinkurl{monica.yc.li@gmail.com}}
+          }
+                                  
+
+  \abstract{This document has similar content as \texttt{example\_pandoc.md} but
+with more sophisticated format settings for the APA citation style. For
+more detailed examples including R syntax, check out \texttt{papaja}'s
+\href{https://github.com/crsh/papaja}{GitHub repo}.}
+  \keywords{APA style, knitr, R, R markdown, papaja, docx, pdf \\
+
+    \indent Word count: {[}insert word count here{]}
+  }
+
+
+
+
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\maketitle
+
+\setcounter{secnumdepth}{0}
+
+
+
+\section{Instructions}\label{instructions}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Install
+  \href{https://www.rstudio.com/products/rstudio/download/}{\texttt{R\ Studio}}
+\item
+  Install \href{https://github.com/crsh/papaja}{\texttt{papaja}} in
+  \texttt{R\ Studio}
+\item
+  To convert this file into a Word document:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    make sure in the yaml block, \texttt{output} is set to
+    \texttt{papaja::apa6\_word}
+  \item
+    click the \texttt{knit} button in \texttt{R\ Studio}
+  \end{enumerate}
+\item
+  To convert this file into a PDF file:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    make sure in the yaml block, \texttt{output} is set to
+    \texttt{papaja::apa6\_pdf}
+  \item
+    click the \texttt{knit} button in \texttt{R\ Studio}
+  \end{enumerate}
+\end{enumerate}
+
+\section{In-Text Citation Examples}\label{in-text-citation-examples}
+
+Citations are referred to by their citation keys (which you can specify
+in your reference manager, like \emph{Mendeley}) in square brackets
+(Magnuson et al., 2011), and multiple citations are separated by
+semicolons like so (Magnuson, 2015; Magnuson et al., 2011).
+
+You can add a prefix or suffix to a citation, for example, when you cite
+pages from a book (Marr, 1982, pp. 24--27).
+
+Although you can technically put the citation outside of square brackets
+like Magnuson, Mirman, Luthra, Strauss, \& Harris (in press), you might
+encounter formatting issues like unwanted ampersands. In cases like
+this, you might want to suppress the author name(s) in the parenthesis
+by adding \texttt{-} before the citation key, like this: Magnuson,
+Mirman, Luthra, Strauss, and Harris (in press).
+
+Also, the \textbf{(in press)} part of the previous reference is enabled
+by my workaround \texttt{APA\_ML.csl} to work with \emph{Mendeley}.
+Check out \texttt{example.bib} for \texttt{@Magnuson2018} to see how
+it's set up.
+
+For theses, dissertations, unpublished, and almost published
+manuscripts, like (Li, 2016; Li et al., 2017; Li, Chang, Hung, \& Wu,
+2014; Noordenbos, 2013), some care needs to be done when entering the
+information in your reference manager. Check out \texttt{example.bib}
+for these references to see the setup.
+
+All cited references will be automatically generated at the end of the
+converted document or under \texttt{\#\ References} /
+\texttt{\#\ Bibliography}.
+
+\section*{References}\label{references}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\hypertarget{ref-Li2016}{}
+Li, M. Y.-C. (2016). \emph{Subphonemic Sensitivity in Low Literacy
+Adults}. (Master's thesis). University of Connecticut, Storrs, CT.
+
+\hypertarget{ref-Li2017}{}
+Li, M. Y.-C., Braze, D., Kukona, A., Johns, C. L., Tabor, W., Van Dyke,
+J. A., \ldots{} Magnuson, J. S. (2017). \emph{Individual Differences in
+Subphonemic Sensitivity and Reading-Related Abilities}. Manuscript
+submitted for publication. \url{https://doi.org/10.17605/OSF.IO/3FNCY}
+
+\hypertarget{ref-Li2014}{}
+Li, M. Y.-C., Chang, E. C., Hung, D. L., \& Wu, D. H. (2014).
+\emph{Functional MRI investigation of the effects of phonological and
+visual similarity of English words on short-term memory in unbalanced
+Chinese-English bilinguals}. Unpublished manuscript, National Central
+University, Taiwan.
+
+\hypertarget{ref-Magnuson2015}{}
+Magnuson, J. S. (2015). Phoneme restoration and empirical coverage of
+interactive activation and adaptive resonance models of human speech
+processing. \emph{The Journal of the Acoustical Society of America},
+\emph{137}(3), 1481--1492. \url{https://doi.org/10.1121/1.4904543}
+
+\hypertarget{ref-Magnuson2011}{}
+Magnuson, J. S., Kukona, A., Braze, D., Johns, C. L., Van Dyke, J. A.,
+Tabor, W., \ldots{} Shankweiler, D. P. (2011). Phonological instability
+in young adult poor readers: Time course measures and computational
+modeling. In P. McCardle, B. Miller, J. R. Lee, \& O. J.-L. Tzeng
+(Eds.), \emph{Dyslexia across languages: Orthography and the
+brain-gene-behavior link} (pp. 184--201). Baltimore, Maryland: Paul H.
+Brookes.
+
+\hypertarget{ref-Magnuson2018}{}
+Magnuson, J. S., Mirman, D., Luthra, S., Strauss, T., \& Harris, H. D.
+(in press). Interaction in spoken word recognition models: Feedback
+helps. \emph{Frontiers in Psychology}.
+\url{https://doi.org/10.3389/fpsyg.2018.00369}
+
+\hypertarget{ref-Marr1982}{}
+Marr, D. (1982). \emph{Vision: A Computational Investigation into the
+Human Representation and Processing of Visual Information}. San
+Francisco: W. H. Freeman; Company.
+
+\hypertarget{ref-Noordenbos2013a}{}
+Noordenbos, M. W. (2013). \emph{Phonological representations in
+dyslexia: Underspecified or overspecified?} (Doctoral dissertation).
+Radboud University Nijmegen, The Netherlands. Retrieved from
+\url{http://repository.ubn.ru.nl/bitstream/handle/2066/115718/115718.pdf?sequence=1}
+
+
+
+
+
+
+\end{document}
