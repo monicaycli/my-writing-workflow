@@ -1,7 +1,7 @@
 # My Writing Workflow
 ## markdown, pandoc, and more!
 ![](./workflow.png)
-1. I use [_Mendeley_](https://www.mendeley.com/) to organize PDF files of academic articles.
+1. I use [_Mendeley_](https://www.mendeley.com/) to organize and annotate PDF files of academic articles.
 2. _Mendeley_ can automatically generate `.bib` files that contain citation info of all or part of your _Mendeley_ library.
 3.  `.csl` files specify what citation style (e.g., APA) the references will be formatted in. It can be extracted from _Mendeley_ or easily obtained from the internet.
 4. [_Scrivener_](https://www.literatureandlatte.com/scrivener/overview) is a writing program I use for organizing my writing projects. It's good for making outline, moving things around, focusing on selective parts of a manuscript, taking notes, gathering research materials, exporting to various file formats etc.
