@@ -39,7 +39,7 @@
 	* Markdown (.md): https://www.markdownguide.org/ 
 	* Rmarkdown (.Rmd): https://rmarkdown.rstudio.com/ 
 
-# file conversion / formatting
+## file conversion / formatting
 * pandoc: https://pandoc.org/ 
 * scrivomatic: https://github.com/iandol/scrivomatic
 * R Studio
